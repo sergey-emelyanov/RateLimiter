@@ -26,16 +26,13 @@ class RateLimiter:
                     kol += 1
                     result = func(*args, **kwargs)
                     return result
-                elif kol >= count:
-                    nonlocal start
+                else:
                     delta = time.time() - start
                     if delta >= maxcols_per_time:
                         return 'Привышен лимит'
                     else:
                         result = func(*args, **kwargs)
                         return result
-                else:
-                    kol += 1
 
             return wrapper
 
